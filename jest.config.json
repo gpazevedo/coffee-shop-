@@ -1,0 +1,19 @@
+{
+  "testEnvironment": "node",
+  "preset": "ts-jest",
+  "testMatch": ["<rootDir>/src/**/*.test.ts"],
+  "watchPathIgnorePatterns": [],
+  "collectCoverageFrom": ["src/**/*.{ts,js,jsx}", "!src/index.ts"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  },
+  "coverageReporters": ["lcov", "text"],
+  "moduleDirectories": ["node_modules","src"],
+  "moduleNameMapper": {
+    "@/(.*)$": "<rootDir>/src/$1"    }
+}
