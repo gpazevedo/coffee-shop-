@@ -24,32 +24,31 @@ describe("Coffee Shop", () => {
       { "user": "zoey", "drink": "short espresso", "size": "small" }
     ]
 
-    const pricedOrders : { user: string, cost: number }[]= [
-      {
-        "cost": 3.5,
+    const balance = [{
+        "balance": 8,
+        "order_total": 8,
+        "payment_total": 0,
         "user": "coach",
       },
       {
-        "cost": 3.25,
+        "balance": 3.25,
+        "order_total": 3.25,
+        "payment_total": 0,
         "user": "ellis",
       },
       {
-        "cost": 4.5,
+        "balance": 4.50,
+        "order_total": 4.50,
+        "payment_total": 0,
         "user": "rochelle",
       },
       {
-        "cost": 4.5,
-        "user": "coach",
-      },
-      {
-        "cost": 3.5,
+        "balance": 6.53,
+        "order_total": 6.53,
+        "payment_total": 0,
         "user": "zoey",
       },
-      {
-        "cost": 3.03,
-        "user": "zoey",
-      },
-    ]
-    expect(coffeeApp(prices, orders, [])).toEqual(pricedOrders)
+    ];
+    expect(coffeeApp(prices, orders, [])).toEqual(balance)
   })
 })
