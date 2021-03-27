@@ -1,44 +1,28 @@
 import { loadPrices } from '..'
+import {Price} from '@/coffee'
 import { amount } from '@/amount'
 
 describe("Price Map", () => {
-  it("should work for a drink with one size", () => {
-    const prices = [{ "drink_name": "short espresso", "prices": { "small": 3.0 } }];
-
-    expect(loadPrices(prices)).toEqual([
-      {
-        beverage: { drink: 'short espresso', size: 'small' },
-        price: amount(3)
-      }
-    ])
-  });
+  const prices: Price[] = [{ "drink_name": "short espresso", "prices": { "small": 3.0 } },
+  { "drink_name": "short espresso", "prices": { "small": 3.0 } },
+  { "drink_name": "flat white", "prices": { "small": 3.5, "medium": 4.0, "large": 4.5 } }];
+const priceMap = loadPrices(prices)
 
   it("should work for n drink with n sizes", () => {
-    const prices = [{ "drink_name": "short espresso", "prices": { "small": 3.0 } },
-      { "drink_name": "short espresso", "prices": { "small": 3.0 } },
-      { "drink_name": "flat white", "prices": { "small": 3.5, "medium": 4.0, "large": 4.5 } }];
+    const price = priceMap.get('short espresso')
+    expect(price).not.toBe(undefined)
+    if (price) {
+      expect(price.prices['small']).toEqual(3)
+    }
+  })
 
-    expect(loadPrices(prices)).toEqual([
-      {
-        beverage: { drink: 'short espresso', size: 'small' },
-        price: amount(3)
-      },
-      {
-        beverage: { drink: 'short espresso', size: 'small' },
-        price: amount(3)
-      },
-      {
-        beverage: { drink: 'flat white', size: 'small' },
-        price: amount(3.5)
-      },
-      {
-        beverage: { drink: 'flat white', size: 'medium' },
-        price: amount(4)
-      },
-      {
-        beverage: { drink: 'flat white', size: 'large' },
-        price: amount(4.5)
-      }
-    ])
-  });
+  it("should work for n drink with n sizes", () => {
+    const price = priceMap.get('flat white')
+    expect(price).not.toBe(undefined)
+    if (price) {
+      expect(price.prices['small']).toEqual(3.5)
+      expect(price.prices['medium']).toEqual(4)
+      expect(price.prices['large']).toEqual(4.5)
+    }
+  })
 })

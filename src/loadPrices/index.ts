@@ -1,21 +1,10 @@
-import { Beverage, Price } from "@/coffee"
-import { amount } from "@/amount";
+import { Price } from "@/coffee"
 
-type Drink = {
-  drink_name: string,
-  prices: number
-}
+export const loadPrices: (prices: Price[]) => Map<string, Price> = (prices: Price[]) => {
+  const priceMap: Map<string, Price> = new Map()
 
-export const loadPrices: (externalPrices: any[]) => Price[] = (externalPrices: any[]) => {
-  const extPrices: Drink[] = externalPrices;
-  let prices: Price[] = []
-
-  extPrices.forEach((drink) => {
-    const sizes = Object.entries(drink.prices)
-    sizes.forEach((size) => {
-      const beverage: Beverage = { drink: drink.drink_name, size: size[0] }
-      prices = prices.concat([{ beverage, price: amount(size[1]) }])
-    })
+  prices.forEach((drink) => {
+    priceMap.set(drink.drink_name, drink)
   })
-  return prices
+  return priceMap
 }

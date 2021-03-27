@@ -1,4 +1,6 @@
 import { writeFileSync } from 'fs'
 
-console.log("Write File")
-export const writeJSON = (path: string, json: any) => writeFileSync(path, JSON.stringify(json));
+export const writeJSON = (path: string, json: any) => {
+  console.log(`Writing to ${path}`)
+  writeFileSync(path, JSON.stringify(json))
+};

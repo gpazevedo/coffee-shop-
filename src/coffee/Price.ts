@@ -1,6 +1,6 @@
-import { Beverage } from './Beverage'
-
 export type Price = {
-  beverage: Beverage,
-  price: number
+  drink_name: string
+  prices: {
+    [key: string]: number
+  }
 }

@@ -1,11 +1,11 @@
-import { Balance, Beverage, Order } from '@/coffee'
+import { Balance, Price, Order } from '@/coffee'
 import { amount } from '@/amount'
 
-export const ordersToBalance: (balances: Map<string, Balance>, orders: Order[], price: (beverage: Beverage) => number | undefined) => Map<string, Balance> = (balances: Map<string, Balance>, orders: Order[], price: (beverage: Beverage) => number | undefined)  => {
+export const ordersToBalance: (balances: Map<string, Balance>, orders: Order[], priceMap: Map<string, Price>) => Map<string, Balance> = (balances: Map<string, Balance>, orders: Order[], priceMap: Map<string, Price>)  => {
 
   orders.forEach((order) => {
     const balance = balances.get(order.user)
-    const cost = price(order.beverage)
+    const cost = priceMap.get(order.beverage.drink)?.prices[order.beverage.size]
   
     if (cost === undefined) {
       console.log(`Price undefined for ${order.beverage}`)

@@ -18,7 +18,7 @@ const path = options.path ? options.path : './data'
 const pricesJSON = path + '/prices.json'
 const ordersJSON = path + '/orders.json'
 const paymentsJSON = path + '/payments.json'
-const balanceJSON = path + '/payments.json'
+const balanceJSON = path + '/balance.json'
 
 const balances = coffeeApp(readJSON(pricesJSON), readJSON(ordersJSON), readJSON(paymentsJSON))
 
