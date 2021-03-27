@@ -1,14 +1,16 @@
-# TS Starter
+# Coffee Shop
 
-A starter TypeScript setup.
+This system produces a balance for each user in a Coffee Shop, taking into account their orders and payments.
+
+[Problem Definition](./PROBLEM.md) defines the problem, and specifies data files for input and output.
 
 ## Development Commands
 
 ### Setup
 
 ```bash
- git clone https://github.com/gpazevedo/ts-starter folder # copy the repository for a new folder
- yarn install                                             # install the dependencies
+ git clone https://github.com/gpazevedo/coffee-shop folder # copy the repository for a new folder
+ yarn install                                              # install the dependencies
 ```
 
 ### Workflow
