@@ -9,17 +9,16 @@ This system produces a balance for each user in a Coffee Shop, taking into accou
 ### Setup
 
 ```bash
- git clone https://github.com/gpazevedo/coffee-shop folder # copy the repository for a new folder
- yarn install                                              # install the dependencies
+ git clone https://github.com/gpazevedo/coffee-simple folder # copy the repository for a new folder
+ yarn install                                                # install the dependencies
 ```
 
 ### Workflow
 
 ```bash
- yarn start:build    # Watch the source code and compiles it to JavaScript
- yarn start:run      # Watch the JavaScript files and run it
- yarn start          # Watch the source code, compile it and run it continuasly
- test                # Watch the source and execute all tests
- test component      # Watch the component source and execute its tests
- test:coverage       # Execute all tests and calculates the test coverage
+ yarn build           # Compiles the source code to JavaScript
+ yarn start           # Run the JavaScript files
+ yarn test            # Watch the source and execute all yarn tests
+ yarn test component  # Watch the component source and execute its yarn tests
+ yarn test:coverage   # Execute all tests and calculates the test coverage
  ```
