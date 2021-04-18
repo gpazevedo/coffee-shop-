@@ -2,7 +2,7 @@
   "testEnvironment": "node",
   "preset": "ts-jest",
   "testMatch": ["<rootDir>/src/**/*.test.ts"],
-  "watchPathIgnorePatterns": [],
+  "watchPathIgnorePatterns": ["<rootDir>/data"],
   "collectCoverageFrom": ["src/**/*.{ts,js,jsx}", "!src/index.ts"],
   "coverageThreshold": {
     "global": {
