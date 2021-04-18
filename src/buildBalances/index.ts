@@ -8,19 +8,28 @@ import { amount } from '@/amount'
 
 export function buildBalances(prices: any[], orders: any[], payments: any[]): { user: string, order_total: number, payment_total: number }[] {
 
+  function addBalance(props: { account: string, paid: number, ordered: number }) {
+    const oldBalance = balances.get(props.account)
+    const newBalance = oldBalance
+      ? { account: props.account, paid: amount(oldBalance.paid + props.paid), ordered: amount(oldBalance.ordered + props.ordered) }
+      : { account: props.account, paid: amount(props.paid), ordered: amount(props.ordered) }
+
+    balances.set(props.account, newBalance)
+  }
+
   const priceMap = loadPrices(prices);
   const ordered: Order[] = loadOrders(orders)
   const paid: Payment[] = loadPayments(payments)
 
-  const noBalance: Map<string, Balance> = new Map()
-  const balanceFromOrders = ordersToBalance(noBalance, ordered, priceMap)
-  const balanceFromPayments = paymentsToBalance(balanceFromOrders, paid)
+  const balances: Map<string, Balance> = new Map()
+  ordersToBalance(addBalance, ordered, priceMap)
+  paymentsToBalance(addBalance, paid)
 
-  const balances = Array.from(balanceFromPayments.values()).map((balance) => {
-    return {
-      balance: amount(balance.ordered - balance.paid),
-      user: balance.account, order_total: balance.ordered, payment_total: balance.paid
-    }
-  })
-  return balances
+  return Array.from(balances.values())
+    .map((balance) => {
+      return {
+        balance: amount(balance.ordered - balance.paid),
+        user: balance.account, order_total: balance.ordered, payment_total: balance.paid
+      }
+    })
 }

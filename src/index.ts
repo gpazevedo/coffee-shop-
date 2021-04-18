@@ -5,7 +5,7 @@ import { program } from 'commander'
 import { coffeeApp } from 'coffeeApp'
 
 program
-  .version('0.0.2')
+  .version('0.0.3')
   .description("Coffee shop balance")
   .option('-, --path <name>', 'data folder where orders.json, payments.json and prices.json is located')
   .parse(process.argv);
@@ -18,4 +18,4 @@ const ordersJSON = path + '/orders.json'
 const paymentsJSON = path + '/payments.json'
 const balanceJSON = path + '/balance.json'
 
-const balances = coffeeApp(pricesJSON, ordersJSON, paymentsJSON, balanceJSON)
+coffeeApp(pricesJSON, ordersJSON, paymentsJSON, balanceJSON)
